@@ -90,10 +90,10 @@ rule(preferHaveHwMoodRuleTake4, prefer(haveHwMoodRuleTake(Method), haveHwMoodRul
 
 
 %If we have Hw and moodToCook but its ezHw then we cook
-rule(haveEzHwMoodToCookRule(Method), cook(Method) , []) :- haveHw,easyHw .
+rule(haveEzHwRule(Method), cook(Method) , []) :- haveHw,easyHw .
 
-rule(preferHaveEzHwMoodToCookRuleDel, prefer(haveEzHwMoodToCookRule(Method), haveHwMoodRuleDel(Method)), []).  
-rule(preferHaveEzHwMoodToCookRuleTake, prefer(haveEzHwMoodToCookRule(Method), haveHwMoodRuleTake(Method)), []).  
+rule(preferHaveEzHwMoodToCookRuleDel, prefer(haveEzHwRule(Method), haveHwRuleDel(Method)), []).  
+rule(preferHaveEzHwMoodToCookRuleTake, prefer(haveEzHwRule(Method), haveHwRuleTake(Method)), []).  
 
 
 %If noDelivery then all possible Dels are neg
@@ -111,7 +111,7 @@ rule(noCook(Method), neg(cook(Method)) , []) :- noCook .
 
 rule(preferNoCook1, prefer(noCook(Method), emptyMethodRuleCook(Method)), []).  
 rule(preferNoCook2, prefer(noCook(Method), moodToCookRule(Method)), []).  
-rule(preferNoCook3, prefer(noCook(Method), haveEzHwMoodToCookRule(Method)), []).  
+rule(preferNoCook3, prefer(noCook(Method), haveEzHwRule(Method)), []).  
 
 
 %If noCook then all possible Dels are neg

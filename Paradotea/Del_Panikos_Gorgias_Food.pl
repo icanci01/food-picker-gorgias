@@ -1,6 +1,3 @@
-
-
-
 %As Panikos I prefer ordering delivery as much as possible then takeaway then cooking my meal by myself.
 %There is a chance that The restaurant does noDelivery, noTakeway or noCook.
 %Moreover there is a chance I am in a moodToCook so I prefer cooking and if I haveHw I prefer Delivery because HW is important.
@@ -89,7 +86,7 @@ rule(preferHaveHwMoodRule2, prefer(haveHwMoodRuleDel(Method), haveHwMoodRuleTake
 rule(preferHaveHwMoodRule3, prefer(haveHwMoodRuleTake(Method), haveHwMoodRuleDel(Method)), []):- not(prefersDelivery) .
 
 %If we have Hw and but its ezHw then we cook
-rule(haveEzHwMoodToCookRule(Method), cook(Method) , []) :- haveHw,easyHw .
+rule(haveEzHwMoodToCookRule(Method), cook(Method) , []) :- haveHw,easyHw,moodToCook .
 
 rule(preferHaveEzHwMoodToCookRuleDel, prefer(haveEzHwMoodToCookRule(Method), haveHwMoodRuleDel(Method)), []).
 rule(preferHaveEzHwMoodToCookRuleTake, prefer(haveEzHwMoodToCookRule(Method), haveHwMoodRuleTake(Method)), []).
@@ -109,8 +106,8 @@ rule(preferNoDelivery3, prefer(noDelivery(Method), haveHwMoodRuleDel(Method)), [
 rule(noCook(Method), neg(cook(Method)) , []) :- noCook .
 
 rule(preferNoCook1, prefer(noCook(Method), emptyMethodRuleCook(Method)), []).
-rule(preferNoCook2, prefer(noDelivery(Method), moodToCookRule(Method)), []).
-rule(preferNoCook3, prefer(noDelivery(Method), haveEzHwMoodToCookRule(Method)), []).
+rule(preferNoCook2, prefer(noCook(Method), moodToCookRule(Method)), []).
+rule(preferNoCook3, prefer(noCook(Method), haveEzHwMoodToCookRule(Method)), []).
 
 
 %If noCook then all possible Dels are neg
