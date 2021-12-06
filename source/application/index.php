@@ -163,7 +163,6 @@ input:checked+.slider .off {
 						<input type="checkbox" class="custom-control-input" id="noCook"
 							name="noCook"
 							<?php
-
     if (isset($_POST['noCook']) && $_POST['noCook']) {
         echo htmlspecialchars('checked');
     }

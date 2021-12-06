@@ -1,2 +1,7 @@
 .idea/*
-source/php/SwaggerClient-php/*
+./source/php/SwaggerClient-php/*
+./*/.settings/*
+./*/.project
+.settings/*
+.project
+.buildpath
