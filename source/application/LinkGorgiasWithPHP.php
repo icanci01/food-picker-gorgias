@@ -1,5 +1,5 @@
 <?php
-require_once ('./SwaggerClient-php/vendor/autoload.php');
+require_once('./SwaggerClient-php/vendor/autoload.php');
 
 use Swagger\Client\Api\PrologControllerApi as PrologControllerApi;
 use Swagger\Client\Model\QueryObj as QueryObj;
@@ -55,12 +55,13 @@ class LinkGorgiasWithPHP
         }
     }
 
-    public function executeGorgias($cristian, $noCook, $noDelivery, $noTakeway, $noOption, $moodToCook, $haveHw, $easyHw)
+    public function executeGorgias($userMod, $noCook, $noDelivery, $noTakeway, $noOption, $moodToCook, $haveHw, $easyHw)
     {
-        echo ! $cristian;
-        echo ! $noCook;
-        echo ! $noDelivery;
-        echo ! $noTakeway;
+
+        if ($userMod)
+            echo "YES";
+        else
+            echo "NO";
 
         // Create prolog API object instance
         $prologApiInstance = new PrologControllerApi();
@@ -72,10 +73,10 @@ class LinkGorgiasWithPHP
 
         // Consult the  Gorgias policy file from the specific project:
         // consultFileUsingPOST("gorgias policy file", "project name")
-        if (! $cristian)
-            $result = $prologApiInstance->consultFileUsingPOST("Del_Panikos_Gorgias_Food.pl", "project2_group1");
-        else
-            $result = $prologApiInstance->consultFileUsingPOST("Cook_Cristian_Gorgias_food.pl", "project2_group1");
+//        if ($userMod)
+//            $result = $prologApiInstance->consultFileUsingPOST("Del_Panikos_Gorgias_Food.pl", "project2_group1");
+//        else
+//            $result = $prologApiInstance->consultFileUsingPOST("Cook_Cristian_Gorgias_food.pl", "project2_group1");
 
         // We will use the fact list to retract the facts when we finish
         $factsList = array();
@@ -219,7 +220,7 @@ class LinkGorgiasWithPHP
         foreach ($deltaBeforeParsing->{'Delta'} as $deltaTerm) {
             if (preg_match('/^ass\(.*\)$/', $deltaTerm, $matches)) {
                 $deltaArray[] = $deltaTerm;
-            } else if (! preg_match('/^nott\(.*\)$/', $deltaTerm, $matches)) {
+            } else if (!preg_match('/^nott\(.*\)$/', $deltaTerm, $matches)) {
                 $ruleHead = explode('(', $deltaTerm)[0];
                 $deltaArray[] = $ruleHead;
             }

@@ -13,44 +13,18 @@ class Api
     public function handleRequest()
     {
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            $userMod = $_POST["togBtn"];
-            $noCook = false;
-            $noDelivery = false;
-            $noTakeaway = false;
-            $noOptions = false;
-            $moodToCook = false;
-            $haveHw = false;
-            $easyHw = false;
+            $userMod = isset($_POST["togBtn"]);
+            $noCook = isset($_POST["noCook"]);
+            $noDelivery = isset($_POST["noDelivery"]);
+            $noTakeaway = isset($_POST["noTakeaway"]);
+            $noOptions = isset($_POST["noCook"]) && isset($_POST["noDelivery"]) && isset($_POST["noTakeaway"]);
+            $moodToCook = isset($_POST["moodToCook"]);
+            $haveHw = isset($_POST["haveHw"]);
+            $easyHw = isset($_POST["easyHw"]);
 
-            if (isset($_POST["noCook"])) {
-                $noCook = true;
-            }
-            if (isset($_POST["noDelivery"])) {
-                $noDelivery = true;
-            }
-            if (isset($_POST["noTakeaway"])) {
-                $noTakeaway = true;
-            }
-            if (isset($_POST["noCook"]) && isset($_POST["noDelivery"]) && isset($_POST["noTakeaway"])) {
-                $noOptions = true;
-            }
-            if (isset($_POST["moodToCook"])) {
-                $moodToCook = true;
-            }
-            if (isset($_POST["haveHw"])) {
-                $haveHw = true;
-            }
-            if (isset($_POST["easyHw"])) {
-                $easyHw = true;
-            }
-
-
-
-           $linkGorgiasWithPHP = new LinkGorgiasWithPHP();
-           return $linkGorgiasWithPHP->executeGorgias($userMod, $noCook, $noDelivery, $noTakeaway, $noOptions, $moodToCook, $haveHw, $easyHw);
+            $linkGorgiasWithPHP = new LinkGorgiasWithPHP();
+            return $linkGorgiasWithPHP->executeGorgias($userMod, $noCook, $noDelivery, $noTakeaway, $noOptions, $moodToCook, $haveHw, $easyHw);
         }
-
-
     }
 
 }
