@@ -11,7 +11,7 @@
 :- dynamic noCook/0, noDelivery/0, noTakeaway/0, moodToCook/0 , haveHw/0, easyHw/0 .
 
 
-%he rpefers takeaway than delivery secondly
+%he prefers takeaway than delivery secondly
 prefersTakeaway.
 
 

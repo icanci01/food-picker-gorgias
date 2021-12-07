@@ -80,16 +80,11 @@ require_once('Api.php');
                     <?php
                         $api = new Api();////prin itan keflaio to prasino api
                         $result = $api->handleRequest();
-//                        echo '<pre>';
-//                        echo htmlspecialchars(var_dump($result));
-//                        echo '</pre>';
-//                        die();
                         if ($result['alarmOn'] && $result['heatOn']){
                             echo '<h3 class="bg-success text-white">Heat and alarm are ON</h3>';
                             echo '<div class="card">';
                             echo '<div class="card-body">';
                             echo '<h3>Explanation:</h3><h4>'.$result['alarmOnDeltaExplanation'].'</h4>';
-//                            echo '<h3>Explanation:</h3><h4>'.$result['heatOnDeltaExplanation'].'</h4>';
                             echo '</div>';
                             echo '</div>';
                         }else
@@ -98,7 +93,6 @@ require_once('Api.php');
                             echo '<div class="card">';
                             echo '<div class="card-body">';
                             echo '<h3>Explanation:</h3><h4>'.$result['alarmOffDeltaExplanation'].'</h4>';
-//                            echo '<h3>Explanation:</h3><h4>'.$result['heatOffDeltaExplanation'].'</h4>';
                             echo '</div>';
                             echo '</div>';
                         }else
@@ -107,7 +101,6 @@ require_once('Api.php');
                             echo '<div class="card">';
                             echo '<div class="card-body">';
                             echo '<h3>Explanation:</h3><h4>'.$result['alarmOffDeltaExplanation'].'</h4>';
-//                            echo '<h3>Explanation:</h3><h4>'.$result['heatOnDeltaExplanation'].'</h4>';
                             echo '</div>';
                             echo '</div>';
                         }else
@@ -116,7 +109,6 @@ require_once('Api.php');
                             echo '<div class="card">';
                             echo '<div class="card-body">';
                             echo '<h3>Explanation:</h3><h4>'.$result['alarmOnDeltaExplanation'].'</h4>';
-//                            echo '<h3>Explanation:</h3><h4>'.$result['heatOffDeltaExplanation'].'</h4>';
                             echo '</div>';
                             echo '</div>';
                         }

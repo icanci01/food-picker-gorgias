@@ -9,7 +9,7 @@
 %method args
 :- dynamic noCook/0, noDelivery/0, noTakeaway/0, moodToCook/0 , haveHw/0, easyHw/0 .
 
-%he rpefers delivery than take away
+%he prefers delivery than take away
 prefersDelivery.
 
 % OPTIONS and complementarity
@@ -26,11 +26,11 @@ rule(emptyMethodRuleDel(Method), delivery(Method) , []).
 rule(emptyMethodRuleCook(Method), cook(Method) , []).
 rule(emptyMethodRuleTake(Method), takeAway(Method) , []).
 
-%Panikos Likes delivery than all then take away finaly cook
+%Panikos Likes delivery than all then take away finally cook
 rule(delThanCookEmptyRule, prefer(emptyMethodRuleDel(Method), emptyMethodRuleCook(Method)), []).
 rule(takeThanCookEmptyRule, prefer(emptyMethodRuleTake(Method), emptyMethodRuleCook(Method)), []).
 
-%prefer del than take way - Cristian pregers otherwise
+%prefer del than take way - Cristian prefers otherwise
 rule(delThanTakeEmptyRule, prefer(emptyMethodRuleDel(Method), emptyMethodRuleTake(Method)), []).
 
 %If he is in a moodToCook then he prefers Cook then Delivery then takeAway
