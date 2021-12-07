@@ -1,6 +1,7 @@
 <?php
 require_once('Api.php');
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,7 +20,7 @@ require_once('Api.php');
 <body>
 <div class="container" style="margin-top: 1em">
     <div class="card">
-        <div class="card-header bg-dark text-white" style="display: flex; align-items: center; justify-content: center">
+        <div class="card-header bg-dark text-white">
             <h1>Food Method Picker</h1>
         </div>
         <div class="card-body bg-light text-dark">
@@ -147,22 +148,19 @@ require_once('Api.php');
                 </div>
 
                 <button type="submit" name="btn_submit" id="btn_submit" class="btn btn-primary btn-lg">Submit</button>
-                <button type="reset" name="btn_clear" id="btn_clear" class="btn btn-warning btn-lg">Clear all</button>
             </form>
         </div>
         <div class="card-footer bg-light text-dark">
             <?php
-
             $api = new Api();
             $result = $api->handleRequest();
-
             ?>
         </div>
     </div>
 </div>
 </body>
 <footer>
-    <div class="container" style="margin-top: 1em; display: flex; align-items: center; justify-content: center;">
+    <div class="container">
         <div class="card-footer bg-dark text-white">
             <h5>Created by Panikos Christou and Cristian - Ionut Canciu</h5>
         </div>

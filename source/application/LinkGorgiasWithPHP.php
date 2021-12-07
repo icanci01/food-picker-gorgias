@@ -57,12 +57,7 @@ class LinkGorgiasWithPHP
 
     public function executeGorgias($userMod, $noCook, $noDelivery, $noTakeway, $noOption, $moodToCook, $haveHw, $easyHw)
     {
-
-        if ($userMod)
-            echo "YES";
-        else
-            echo "NO";
-
+        
         // Create prolog API object instance
         $prologApiInstance = new PrologControllerApi();
 
