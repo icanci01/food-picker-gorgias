@@ -57,7 +57,7 @@ class LinkGorgiasWithPHP
 
     public function executeGorgias($userMod, $noCook, $noDelivery, $noTakeway, $noOption, $moodToCook, $haveHw, $easyHw)
     {
-        
+        echo $userMod;
         // Create prolog API object instance
         $prologApiInstance = new PrologControllerApi();
 
@@ -98,26 +98,6 @@ class LinkGorgiasWithPHP
         if ($regularCustomer) {
             // Prepare fact string
             $fact = "rule(f2,regular(" . $customerId . "),[])";
-            // Assert fact
-            $prologQueryObj->setQuery('assert(' . $fact . ').');
-            $result = $prologApiInstance->prologCommandUsingPOST($prologQueryObj);
-            // Add fact to facts list
-            $factsList[] = $fact;
-        }
-        // Assert fact (defeasible conditions)
-        if ($highSeason) {
-            // Prepare fact string
-            $fact = "rule(f3,high_season,[])";
-            // Assert fact
-            $prologQueryObj->setQuery('assert(' . $fact . ').');
-            $result = $prologApiInstance->prologCommandUsingPOST($prologQueryObj);
-            // Add fact to facts list
-            $factsList[] = $fact;
-        }
-        // Assert fact (defeasible conditions)
-        if ($lateDelivery) {
-            // Prepare fact string
-            $fact = "rule(f4,late_delivery(" . $customerId . "," . $productId . "),[])";
             // Assert fact
             $prologQueryObj->setQuery('assert(' . $fact . ').');
             $result = $prologApiInstance->prologCommandUsingPOST($prologQueryObj);
