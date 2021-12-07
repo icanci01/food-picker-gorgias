@@ -13,7 +13,7 @@ class Api
     public function handleRequest()
     {
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            $userMod = $_POST["userMod"];
+            $userMod = $_POST["togBtn"];
             $noCook = false;
             $noDelivery = false;
             $noTakeaway = false;
@@ -44,9 +44,12 @@ class Api
                 $easyHw = true;
             }
 
-            $linkGorgiasWithPHP = new LinkGorgiasWithPHP();
-            return $linkGorgiasWithPHP->executeGorgias($userMod, $noCook, $noDelivery, $noTakeaway, $noOptions, $moodToCook, $haveHw, $easyHw);
+
+
+           $linkGorgiasWithPHP = new LinkGorgiasWithPHP();
+           return $linkGorgiasWithPHP->executeGorgias($userMod, $noCook, $noDelivery, $noTakeaway, $noOptions, $moodToCook, $haveHw, $easyHw);
         }
+
 
     }
 

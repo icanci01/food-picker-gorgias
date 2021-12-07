@@ -1,131 +1,40 @@
-<?php define('USERMOD', false);
-require_once('Api.php'); ?>
+<?php
+require_once('Api.php');
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <title>Gorgias Food Picker</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap">
+    <link rel="stylesheet" href="customStyles.css">
     <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
-    <style>
-        h1, h2, h3, h4: {
-            font-family: 'Roboto', sans-serif;
-        }
-
-        .switch {
-            position: relative;
-            display: inline-block;
-            width: 255px;
-            height: 55px;
-        }
-
-        .switch input {
-            display: none;
-        }
-
-        .slider {
-            position: absolute;
-            cursor: pointer;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: #cc0000;
-            -webkit-transition: .4s;
-            transition: .4s;
-        }
-
-        .slider:before {
-            position: absolute;
-            content: "";
-            height: 47px;
-            width: 47px;
-            left: 4px;
-            bottom: 4px;
-            background-color: white;
-            -webkit-transition: .4s;
-            transition: .4s;
-        }
-
-        input:checked + .slider {
-            background-color: #008000;
-        }
-
-        input:focus + .slider {
-            box-shadow: 0 0 1px #008000;
-        }
-
-        input:checked + .slider:before {
-            -webkit-transform: translateX(230px);
-            -ms-transform: translateX(230px);
-            transform: translateX(200px);
-        }
-
-        /*------ ADDED CSS ---------*/
-        .on {
-            display: none;
-        }
-
-        .on, .off {
-            color: white;
-            position: absolute;
-            transform: translate(-50%, -50%);
-            top: 50%;
-            left: 50%;
-            font-size: 20px;
-            font-family: Verdana, sans-serif;
-        }
-
-        input:checked + .slider .on {
-            display: block;
-        }
-
-        input:checked + .slider .off {
-            display: none;
-        }
-
-        /*--------- END --------*/
-
-        /* Rounded sliders */
-        .slider.round {
-            border-radius: 30px;
-        }
-
-        .slider.round:before {
-            border-radius: 50%;
-        }
-    </style>
-
 </head>
 <body>
 <div class="container" style="margin-top: 1em">
     <div class="card">
-        <div class="card-header bg-dark text-white">
+        <div class="card-header bg-dark text-white" style="display:flex; align-items: center; justify-content: center">
             <h1>Food Method Picker</h1>
         </div>
-        <div class="card-header bg-dark text-white">
-            <h5>Created by Panikos Christou and Cristian - Ionut Canciu</h5>
-        </div>
+
         <div class="card-body">
             <div class="row">
                 <!-- Switch between the two users -->
                 <div class="col">
                     <div class="form-group">
-                        <label class="switch"> <input type="checkbox" id="togBtn">
+                        <label class="switch" for="togBtn"> <input type="checkbox" id="togBtn">
                             <div class="slider round">
                                 <!--ADDED HTML -->
                                 <div class="on">
-                                    <?php $userMod = true;?>
                                     <span>Panikos</span>
                                 </div>
                                 <div class="off">
-                                    <?php $userMod = false; ?>
                                     <span>Cristian</span>
                                 </div>
 
@@ -234,11 +143,20 @@ require_once('Api.php'); ?>
             $api = new Api();
             $result = $api->handleRequest();
 
+            if ($result == 'hadhsahdhsa')
+                echo "dsadsadsa";
 
             ?>
         </div>
+
     </div>
 </div>
-
 </body>
+<footer>
+    <div class="container" style="margin-top: 1em; display:flex; align-items:center; justify-content: center;">
+        <div class="card-footer bg-dark text-white">
+            <h5>Created by Panikos Christou and Cristian - Ionut Canciu</h5>
+        </div>
+    </div>
+</footer>
 </html>
