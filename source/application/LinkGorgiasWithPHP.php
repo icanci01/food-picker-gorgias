@@ -57,7 +57,6 @@ class LinkGorgiasWithPHP
 
     public function executeGorgias($userMod, $noCook, $noDelivery, $noTakeway, $noOption, $moodToCook, $haveHw, $easyHw)
     {
-        echo $userMod;
         // Create prolog API object instance
         $prologApiInstance = new PrologControllerApi();
 
@@ -68,40 +67,63 @@ class LinkGorgiasWithPHP
 
         // Consult the  Gorgias policy file from the specific project:
         // consultFileUsingPOST("gorgias policy file", "project name")
-//        if ($userMod)
-//            $result = $prologApiInstance->consultFileUsingPOST("Del_Panikos_Gorgias_Food.pl", "project2_group1");
-//        else
-//            $result = $prologApiInstance->consultFileUsingPOST("Cook_Cristian_Gorgias_food.pl", "project2_group1");
+        if ($userMod)
+            $result = $prologApiInstance->consultFileUsingPOST("Del_Panikos_Gorgias_Food.pl", "project2_group1");
+        else
+            $result = $prologApiInstance->consultFileUsingPOST("Cook_Cristian_Gorgias_food.pl", "project2_group1");
 
-        // We will use the fact list to retract the facts when we finish
         $factsList = array();
-
-        // Create prolog query object instance
         $prologQueryObj = new QueryObj();
-
-        // Configure  maximum number of answers and execution time
         $prologQueryObj->setResultSize(1);
         $prologQueryObj->setTime(1000);
 
-        // Assert fact (Non-defeasible conditions)
+        // Assert fact (non-defeasible conditions)
         if ($noOption) {
-            // Prepare fact string
-            $fact = "pay_cash(" . $productId . "," . $customerId . ")";
-            // Assert fact
+            $fact = "noOptions";
             $prologQueryObj->setQuery('assert(' . $fact . ').');
             $result = $prologApiInstance->prologCommandUsingPOST($prologQueryObj);
-            // Add fact to facts list
             $factsList[] = $fact;
         }
-
         // Assert fact (defeasible conditions)
-        if ($regularCustomer) {
-            // Prepare fact string
-            $fact = "rule(f2,regular(" . $customerId . "),[])";
-            // Assert fact
+        if ($noCook) {
+            $fact = "noCook";
             $prologQueryObj->setQuery('assert(' . $fact . ').');
             $result = $prologApiInstance->prologCommandUsingPOST($prologQueryObj);
-            // Add fact to facts list
+            $factsList[] = $fact;
+        }
+        // Assert fact (defeasible conditions)
+        if ($noDelivery) {
+            $fact = "noDelivery";
+            $prologQueryObj->setQuery('assert(' . $fact . ').');
+            $result = $prologApiInstance->prologCommandUsingPOST($prologQueryObj);
+            $factsList[] = $fact;
+        }
+        // Assert fact (defeasible conditions)
+        if ($noTakeway) {
+            $fact = "noTakeaway";
+            $prologQueryObj->setQuery('assert(' . $fact . ').');
+            $result = $prologApiInstance->prologCommandUsingPOST($prologQueryObj);
+            $factsList[] = $fact;
+        }
+        // Assert fact (defeasible conditions)
+        if ($moodToCook) {
+            $fact = "moodToCook";
+            $prologQueryObj->setQuery('assert(' . $fact . ').');
+            $result = $prologApiInstance->prologCommandUsingPOST($prologQueryObj);
+            $factsList[] = $fact;
+        }
+        // Assert fact (defeasible conditions)
+        if ($haveHw) {
+            $fact = "moodToCook";
+            $prologQueryObj->setQuery('assert(' . $fact . ').');
+            $result = $prologApiInstance->prologCommandUsingPOST($prologQueryObj);
+            $factsList[] = $fact;
+        }
+        // Assert fact (defeasible conditions)
+        if ($easyHw) {
+            $fact = "easyHw";
+            $prologQueryObj->setQuery('assert(' . $fact . ').');
+            $result = $prologApiInstance->prologCommandUsingPOST($prologQueryObj);
             $factsList[] = $fact;
         }
 
