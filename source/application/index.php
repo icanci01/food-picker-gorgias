@@ -148,6 +148,11 @@ require_once('Api.php');
             <?php
             $api = new Api();
             $result = $api->handleRequest();
+            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                echo '<div class="mt-4 form-group">
+                        <a href="index.php" class="btn btn-warning btn-lg">Clear</a>
+				</div>';
+            }
             ?>
         </div>
     </div>
