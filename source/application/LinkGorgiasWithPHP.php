@@ -129,10 +129,12 @@ class LinkGorgiasWithPHP
 
         // Result array:
         $gorgiasResult = array(
-            "canSellHigh" => false,
-            "sellHighDelta" => array(),
-            "canSellLow" => false,
-            "sellLowDelta" => array()
+            "delivery" => false,
+            "deliveryDelta" => array(),
+            "cook" => false,
+            "cookDelta" => array(),
+            "takeaway" => false,
+            "takeawayDelta" => array()
         );
 
         // Prepare Gorgias query string
