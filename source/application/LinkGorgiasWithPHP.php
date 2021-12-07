@@ -137,52 +137,56 @@ class LinkGorgiasWithPHP
             "takeawayDelta" => array()
         );
 
-        // Prepare Gorgias query string
-        $querySellHigh = "sell(" . $productId . "," . $customerId . ",high)";
-        // Prepare prove command
-        $gorgiasQuerySellHigh = "prove([" . $querySellHigh . "],Delta)";
-        // Create query object instance
         $gorgiasQueryObj = new QueryObj();
-        // Configure  Maximum number of answers
         $gorgiasQueryObj->setResultSize(1);
-        // Configure execution time
         $gorgiasQueryObj->setTime(1000);
-        // Set Gorgias query
-        $gorgiasQueryObj->setQuery($gorgiasQuerySellHigh);
-        // Execute Gorgias query on Gorgias cloud
+
+        // Prepare Gorgias query for delivery proving
+        $queryTakeaway = "delivery(m)";
+        $gorgiasQueryTakeaway = "prove([" . $queryTakeaway . "],Delta)";
+        $gorgiasQueryObj->setQuery($gorgiasQueryTakeaway);
         $response = $prologApiInstance->proveUsingPOST($gorgiasQueryObj);
 
-        /*
-         * If the response is an array and the array contains a string
-         * in the format({Delta=[delta rules heads]} )
-         * the answer of the query is true.
-         */
         if (is_array($response)) {
             if (preg_match('/^{Delta=(\[.*\])}$/', $response[0], $matches)) {
-                $gorgiasResult["canSellHigh"] = true;
-                // parse the explanation (delta) string to a php array
-                // parse from ["{Delta=[nott(d2(21, customer)), d2(21, customer), nott(c4(21, customer)), p1(21, customer), c4(21, customer), f3, r1(21, customer)]}"]
-                // to ["d2","p1","c4","f3","r1"]
-                $gorgiasResult["sellHighDelta"] = $this->parseDeltaToPHPArray($matches[1]);
+                $gorgiasResult["delivery"] = true;
+                $gorgiasResult["deliveryDelta"] = $this->parseDeltaToPHPArray($matches[1]);
             }
         }
 
-        $querySellLow = "sell(" . $productId . "," . $customerId . ",low)";
-        $gorgiasQuerySellLow = "prove([" . $querySellLow . "],Delta)";
-        $gorgiasQueryObj->setQuery($gorgiasQuerySellLow);
+        // Prepare Gorgias query for cooking proving
+        $queryCooking = "cook(m)";
+        $gorgiasQueryCooking = "prove([" . $queryCooking . "],Delta)";
+        $gorgiasQueryObj->setQuery($gorgiasQueryCooking);
         $response = $prologApiInstance->proveUsingPOST($gorgiasQueryObj);
 
         if (is_array($response)) {
             if (preg_match('/^{Delta=(\[.*\])}$/', $response[0], $matches)) {
-                $gorgiasResult["canSellLow"] = true;
-                $gorgiasResult["sellLowDelta"] = $this->parseDeltaToPHPArray($matches[1]);
+                $gorgiasResult["cook"] = true;
+                $gorgiasResult["cookDelta"] = $this->parseDeltaToPHPArray($matches[1]);
+            }
+        }
+
+        // Prepare Gorgias query for takeaway proving
+        $queryTakeaway = "takeaway(m)";
+        $gorgiasQueryTakeaway = "prove([" . $queryTakeaway . "],Delta)";
+        $gorgiasQueryObj->setQuery($gorgiasQueryTakeaway);
+        $response = $prologApiInstance->proveUsingPOST($gorgiasQueryObj);
+
+        if (is_array($response)) {
+            if (preg_match('/^{Delta=(\[.*\])}$/', $response[0], $matches)) {
+                $gorgiasResult["takeaway"] = true;
+                $gorgiasResult["takeawayDelta"] = $this->parseDeltaToPHPArray($matches[1]);
             }
         }
 
         // When we finish we must unload the Gorgias file and retract all facts
         // unloadFileUsingPOST("your gorgias policy file, "your project name)
 
-        $result = $prologApiInstance->unloadFileUsingPOST("seller.pl", "seller");
+        if ($userMod)
+            $result = $prologApiInstance->unloadFileUsingPOST("Del_Panikos_Gorgias_Food.pl", "project2_group1");
+        else
+            $result = $prologApiInstance->unloadFileUsingPOST("Cook_Cristian_Gorgias_food.pl", "project2_group1");
 
         // Retract all facts    
 
@@ -191,7 +195,6 @@ class LinkGorgiasWithPHP
             $result = $prologApiInstance->prologCommandUsingPOST($prologQueryObj);
         }
         // We use the function generateResultArray to generate the explanation in natural language:
-
         return $this->generateResultArray($gorgiasResult);
     }
 

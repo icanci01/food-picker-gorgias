@@ -1,5 +1,5 @@
 <?php
-require_once ('Api.php');
+require_once('Api.php');
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -7,104 +7,13 @@ require_once ('Api.php');
     <title>Gorgias Food Picker</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-<<<<<<< Updated upstream
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="customStyles.css">
-=======
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-     <link rel="stylesheet" href="customStyles.css">
-    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="stylesheet" href="customStyles.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap">
->>>>>>> Stashed changes
     <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
-</head> 
-<style>
-.switch {
-  position: relative;
-  display: inline-block;
-  width: 255px;
-  height: 55px;
-}
-
-.switch input {
-  display: none;
-}
-
-.slider {
-  position: absolute;
-  cursor: pointer;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: #cc0000;
-  -webkit-transition: .4s;
-  transition: .4s;
-}
-
-.slider:before {
-  position: absolute;
-  content: "";
-  height: 47px;
-  width: 47px;
-  left: 4px;
-  bottom: 4px;
-  background-color: white;
-  -webkit-transition: .4s;
-  transition: .4s;
-}
-
-input:checked + .slider {
-  background-color: #008000;
-}
-
-input:focus + .slider {
-  box-shadow: 0 0 1px #008000;
-}
-
-input:checked + .slider:before {
-  -webkit-transform: translateX(230px);
-  -ms-transform: translateX(230px);
-  transform: translateX(200px);
-}
-
-/*------ ADDED CSS ---------*/
-.on {
-  display: none;
-}
-
-.on, .off {
-  color: white;
-  position: absolute;
-  transform: translate(-50%, -50%);
-  top: 50%;
-  left: 50%;
-  font-size: 20px;
-  font-family: Verdana, sans-serif;
-}
-
-input:checked + .slider .on {
-  display: block;
-}
-
-input:checked + .slider .off {
-  display: none;
-}
-
-/*--------- END --------*/
-
-/* Rounded sliders */
-.slider.round {
-  border-radius: 30px;
-}
-
-.slider.round:before {
-  border-radius: 50%;
-}
-</style>
+</head>
 <body>
 <div class="container" style="margin-top: 1em">
     <div class="card">
@@ -243,9 +152,19 @@ input:checked + .slider .off {
             $api = new Api();
             $result = $api->handleRequest();
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-                echo '<div class="mt-4 form-group">
-                        <a href="index.php" class="btn btn-warning btn-lg">Clear</a>
-				</div>';
+                echo '<div class="mt-4 form-group row">';
+                echo '<div class="col-lg">';
+                echo '<a href="index.php" class="btn btn-warning btn-lg">Clear all</a>';
+                echo '</div>';
+                echo '</div>';
+            } else if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+                echo '<div class="mt-2">';
+                echo '<div class="form-group row">';
+                echo '<div class="col-lg">';
+                echo 'Select your choice';
+                echo '</div>';
+                echo '</div>';
+                echo '</div>';
             }
             ?>
         </div>
