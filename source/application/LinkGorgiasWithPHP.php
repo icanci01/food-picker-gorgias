@@ -13,7 +13,6 @@ class LinkGorgiasWithPHP
     {
         $this->deltaExplanation = array();
         $this->deltaExplanation['emptyMethodRuleDel'] = 'I will order delivery!';
-        $this->deltaExplanation['p2p3'] = $this->deltaExplanation['p2'] = $this->deltaExplanation['p3'] = $this->deltaExplanation['c2c4'] = $this->deltaExplanation['c2'] = $this->deltaExplanation['c4'] = '';
     }
 
     private function generateResultArray($obj)
@@ -22,6 +21,8 @@ class LinkGorgiasWithPHP
             'canSellHigh' => $obj['canSellHigh'],
             'sellHighDelta' => $obj['sellHighDelta'],
             'sellHighDeltaExplanation' => "",
+
+
             'canSellLow' => $obj['canSellLow'],
             'sellLowDelta' => $obj['sellLowDelta'],
             'sellLowDeltaExplanation' => ""
@@ -142,9 +143,9 @@ class LinkGorgiasWithPHP
         $gorgiasQueryObj->setTime(1000);
 
         // Prepare Gorgias query for delivery proving
-        $queryTakeaway = "delivery(m)";
-        $gorgiasQueryTakeaway = "prove([" . $queryTakeaway . "],Delta)";
-        $gorgiasQueryObj->setQuery($gorgiasQueryTakeaway);
+        $queryDelivery = "delivery(m)";
+        $gorgiasQueryDelivery = "prove([" . $queryDelivery . "],Delta)";
+        $gorgiasQueryObj->setQuery($gorgiasQueryDelivery);
         $response = $prologApiInstance->proveUsingPOST($gorgiasQueryObj);
 
         if (is_array($response)) {
@@ -188,22 +189,17 @@ class LinkGorgiasWithPHP
         else
             $result = $prologApiInstance->unloadFileUsingPOST("Cook_Cristian_Gorgias_food.pl", "project2_group1");
 
-        // Retract all facts    
+        // Retract all facts
 
         foreach ($factsList as $fact) {
             $prologQueryObj->setQuery('retract(' . $fact . ').');
             $result = $prologApiInstance->prologCommandUsingPOST($prologQueryObj);
         }
+
         // We use the function generateResultArray to generate the explanation in natural language:
         return $this->generateResultArray($gorgiasResult);
     }
-
-    /*
-     * We use the  parseDeltaToPHPArray function to parse the string to a php array,
-     * that contains explanation rules heads.
-     * parse from ["{Delta=[nott(d2(21, customer)), d2(21, customer), nott(c4(21, customer)), p1(21, customer), c4(21, customer), f3, r1(21, customer)]}"]
-     * to ["d2","p1","c4","f3","r1"]
-     */
+    
     public function parseDeltaToPHPArray($delta)
     {
         $listToJsonFile = file_get_contents('listToJson.pl');
