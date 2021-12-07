@@ -22,7 +22,6 @@ require_once('Api.php');
         <div class="card-header bg-dark text-white" style="display:flex; align-items: center; justify-content: center">
             <h1>Food Method Picker</h1>
         </div>
-
         <div class="card-body">
             <div class="row">
                 <!-- Switch between the two users -->
@@ -42,18 +41,8 @@ require_once('Api.php');
                         </label>
                     </div>
                 </div>
-                <!-- Preference order based on user selection -->
+                <!-- Preferences for Panikos -->
                 <div class="col">
-                    <h3>Cristian</h3>
-                    <h5>
-                        Prefers it in this order: <br>
-                        <ul>
-                            <li>Cook</li>
-                            <li>Takeaway</li>
-                            <li>Delivery</li>
-                        </ul>
-                    </h5>
-                    <hr>
                     <h3>Panikos</h3>
                     <h5>
                         Prefers it in this order: <br>
@@ -64,10 +53,20 @@ require_once('Api.php');
                         </ul>
                     </h5>
                 </div>
-
+                <!-- Preferences for Cristian -->
+                <div class="col">
+                    <h3>Cristian</h3>
+                    <h5>
+                        Prefers it in this order: <br>
+                        <ul>
+                            <li>Cook</li>
+                            <li>Takeaway</li>
+                            <li>Delivery</li>
+                        </ul>
+                    </h5>
+                </div>
             </div>
             <hr>
-
             <!-- noCook -->
             <div class="form-group">
                 <div class="custom-control custom-checkbox">
