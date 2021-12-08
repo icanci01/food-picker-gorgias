@@ -90,7 +90,7 @@ require_once('Api.php');
                             if (isset($_POST['noDelivery']) && $_POST['noDelivery']) {
                                 echo htmlspecialchars('checked');
                             }
-                            ?>> <label class="custom-control-label" for="noDelivery">Can not Deliver</label>
+                            ?>> <label class="custom-control-label" for="noDelivery">Can not order Deliver</label>
                     </div>
                 </div>
                 <!-- noTakeaway -->
@@ -101,7 +101,7 @@ require_once('Api.php');
                             if (isset($_POST['noTakeaway']) && $_POST['noTakeaway']) {
                                 echo htmlspecialchars('checked');
                             }
-                            ?>> <label class="custom-control-label" for="noTakeaway">Can not Takeaway</label>
+                            ?>> <label class="custom-control-label" for="noTakeaway">Can not order Takeaway</label>
                     </div>
                 </div>
                 <!-- moodToCook -->
