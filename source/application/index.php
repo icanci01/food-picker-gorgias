@@ -14,7 +14,6 @@ require_once('Api.php');
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap" >
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap">
-    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
     <style>
         h1, h2, h3, h4: {
             font-family: 'Roboto', sans-serif;
@@ -267,6 +266,31 @@ require_once('Api.php');
             <?php
             $api = new Api();
             $result = $api->handleRequest();
+            if ($result['delivery']) {
+                echo '<h3 class="bg-success text-white">Order Delivery</h3>';
+                echo '<div class="card">';
+                echo '<div class="card-body">';
+                echo '<h3>Explanation:</h6><h4>' . $result['deliveryDeltaExplanation'] . '</h4>';
+                echo '</div>';
+                echo '</div>';
+            }
+            if ($result['takeaway']) {
+                echo '<h3 class="bg-success text-white">Order TakeAway</h3>';
+                echo '<div class="card">';
+                echo '<div class="card-body">';
+                echo '<h3>Explanation:</h3><h4>' . $result['takeawayDeltaExplanation'] . '</h4>';
+                echo '</div>';
+                echo '</div>';
+            }
+            if ($result['cook']) {
+                echo '<h3 class="bg-success text-white">Cook</h3>';
+                echo '<div class="card">';
+                echo '<div class="card-body">';
+                echo '<h3>Explanation:</h6><h4>' . $result['cookDeltaExplanation'] . '</h4>';
+                echo '</div>';
+                echo '</div>';
+            }
+
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 echo '<div class="mt-5 form-group">';
                 echo '<div class="col-lg col-lg-custom">';
