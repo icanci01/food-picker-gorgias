@@ -1,5 +1,5 @@
 <?php
-require_once('./SwaggerClient-php/vendor/autoload.php');
+require_once('./lib/SwaggerClient-php/vendor/autoload.php');
 
 use Swagger\Client\Api\PrologControllerApi as PrologControllerApi;
 use Swagger\Client\Model\QueryObj as QueryObj;
@@ -69,7 +69,7 @@ class LinkGorgiasWithPHP
         $this->deltaExplanation['preferNoTakeawayRule1'] = 'Normally, I prefer <b>cooking</b> and I will <u><b>cook</b><u>, since I can not order <b>takeaway</b>!';
         $this->deltaExplanation['preferNoTakeawayRule2'] = 'Normally, I prefer <b>cooking</b> but since I <b>have homework</b> and since I can not order <b>takeaway</b>, I will order<u><b>delivery</b><u>!';
         $this->deltaExplanation['preferNoTakeawayRule3'] = 'Normally, I prefer <b>cooking</b> but since I <b>have easy homework</b> and since I can not order <b>takeaway</b>, I will order <u><b>delivery</b><u>!';
-        $this->deltaExplanation['preferNoTakeawayRule4'] = 'Normally, I prefer <b>cooking</b> but since I I am <b>in the mood to cook<b> and since I can not order <b>delivery</b>, I will <u><b>cook</b><u>!';
+        $this->deltaExplanation['preferNoTakeawayRule4'] = 'Normally, I prefer <b>cooking</b> but since I am <b>in the mood to cook<b> and since I can not order <b>delivery</b>, I will <u><b>cook</b><u>!';
 
         // Preference based on (noOptions/1.)
         $this->deltaExplanation['preferNoOptions1'] = 'Normally, I prefer <b>cooking</b> and I will <u><b>cook</b><u>, since I have <b>no options</b> left!';
@@ -179,6 +179,13 @@ class LinkGorgiasWithPHP
 
     public function executeGorgias($userMod, $noCook, $noDelivery, $noTakeway, $noOption, $moodToCook, $haveHw, $easyHw)
     {
+
+        echo "<p>User Selected:&nbsp;";
+        if ($userMod)
+            echo nl2br("<b>PANIKOS</b></p>\n ");
+        else
+            echo nl2br("<b>CRISTIAN</b></p>\n");
+
         // Create prolog API object instance
         $prologApiInstance = new PrologControllerApi();
 
@@ -276,30 +283,40 @@ class LinkGorgiasWithPHP
             }
         }
 
-        // Prepare Gorgias query for cooking proving
-        $queryCooking = "cook(m)";
-        $gorgiasQueryCooking = "prove([" . $queryCooking . "],Delta)";
-        $gorgiasQueryObj->setQuery($gorgiasQueryCooking);
-        $response = $prologApiInstance->proveUsingPOST($gorgiasQueryObj);
+//        // Prepare Gorgias query for cooking proving
+//        $queryCooking = "cook(m)";
+//        $gorgiasQueryCooking = "prove([" . $queryCooking . "],Delta)";
+//        $gorgiasQueryObj->setQuery($gorgiasQueryCooking);
+//        $response = $prologApiInstance->proveUsingPOST($gorgiasQueryObj);
+//
+//        if (is_array($response)) {
+//            if (preg_match('/^{Delta=(\[.*\])}$/', $response[0], $matches)) {
+//                $gorgiasResult["cook"] = true;
+//                $gorgiasResult["cookDelta"] = $this->parseDeltaToPHPArray($matches[1]);
+//            }
+//        }
+//
+//        // Prepare Gorgias query for takeaway proving
+//        $queryTakeaway = "takeaway(m)";
+//        $gorgiasQueryTakeaway = "prove([" . $queryTakeaway . "],Delta)";
+//        $gorgiasQueryObj->setQuery($gorgiasQueryTakeaway);
+//        $response = $prologApiInstance->proveUsingPOST($gorgiasQueryObj);
+//
+//        if (is_array($response)) {
+//            if (preg_match('/^{Delta=(\[.*\])}$/', $response[0], $matches)) {
+//                $gorgiasResult["takeaway"] = true;
+//                $gorgiasResult["takeawayDelta"] = $this->parseDeltaToPHPArray($matches[1]);
+//            }
+//        }
 
-        if (is_array($response)) {
-            if (preg_match('/^{Delta=(\[.*\])}$/', $response[0], $matches)) {
-                $gorgiasResult["cook"] = true;
-                $gorgiasResult["cookDelta"] = $this->parseDeltaToPHPArray($matches[1]);
-            }
+        foreach ($factsList as $fact_temp) {
+            echo nl2br($fact_temp . "\n");
         }
 
-        // Prepare Gorgias query for takeaway proving
-        $queryTakeaway = "takeaway(m)";
-        $gorgiasQueryTakeaway = "prove([" . $queryTakeaway . "],Delta)";
-        $gorgiasQueryObj->setQuery($gorgiasQueryTakeaway);
-        $response = $prologApiInstance->proveUsingPOST($gorgiasQueryObj);
-
-        if (is_array($response)) {
-            if (preg_match('/^{Delta=(\[.*\])}$/', $response[0], $matches)) {
-                $gorgiasResult["takeaway"] = true;
-                $gorgiasResult["takeawayDelta"] = $this->parseDeltaToPHPArray($matches[1]);
-            }
+        // Retract all facts
+        foreach ($factsList as $fact) {
+            $prologQueryObj->setQuery('retract(' . $fact . ').');
+            $result = $prologApiInstance->prologCommandUsingPOST($prologQueryObj);
         }
 
         // When we finish we must unload the Gorgias file and retract all facts
@@ -308,12 +325,6 @@ class LinkGorgiasWithPHP
             $result = $prologApiInstance->unloadFileUsingPOST("Del_Panikos_Gorgias_Food.pl", "project2_group1");
         else
             $result = $prologApiInstance->unloadFileUsingPOST("Cook_Cristian_Gorgias_food.pl", "project2_group1");
-
-        // Retract all facts
-        foreach ($factsList as $fact) {
-            $prologQueryObj->setQuery('retract(' . $fact . ').');
-            $result = $prologApiInstance->prologCommandUsingPOST($prologQueryObj);
-        }
 
         // We use the function generateResultArray to generate the explanation in natural language:
         return $this->generateResultArray($gorgiasResult);

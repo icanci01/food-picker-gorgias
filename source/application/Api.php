@@ -22,8 +22,8 @@ class Api
             $haveHw = isset($_POST["haveHw"]);
             $easyHw = isset($_POST["easyHw"]);
 
-           // $linkGorgiasWithPHP = new LinkGorgiasWithPHP();
-           // return $linkGorgiasWithPHP->executeGorgias($userMod, $noCook, $noDelivery, $noTakeaway, $noOptions, $moodToCook, $haveHw, $easyHw);
+            $linkGorgiasWithPHP = new LinkGorgiasWithPHP();
+            return $linkGorgiasWithPHP->executeGorgias($userMod, $noCook, $noDelivery, $noTakeaway, $noOptions, $moodToCook, $haveHw, $easyHw);
         }
     }
 
