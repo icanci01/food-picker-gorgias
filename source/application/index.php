@@ -11,13 +11,13 @@ require_once('Api.php');
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap" >
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
         h1, h2, h3, h4: {
             font-family: 'Roboto', sans-serif;
         }
+
         .switch {
             position: relative;
             display: inline-block;
@@ -127,6 +127,10 @@ require_once('Api.php');
             align-items: center;
             justify-content: center;
         }
+
+        .row-cols {
+            text-align: center;
+        }
     </style>
 </head>
 <body>
@@ -200,7 +204,8 @@ require_once('Api.php');
                 <!-- noDelivery -->
                 <div class="form-group">
                     <div class="custom-control custom-checkbox">
-                        <input type="checkbox" class="custom-control-input" id="noDelivery" name="noDelivery"
+                        <input type="checkbox" class="custom-control-input"
+                               id="noDelivery" name="noDelivery"
                             <?php
                             if (isset($_POST['noDelivery']) && $_POST['noDelivery']) {
                                 echo htmlspecialchars('checked');
@@ -211,12 +216,14 @@ require_once('Api.php');
                 <!-- noTakeaway -->
                 <div class="form-group">
                     <div class="custom-control custom-checkbox">
-                        <input type="checkbox" class="custom-control-input" id="noTakeaway" name="noTakeaway"
+                        <input type="checkbox" class="custom-control-input"
+                               id="noTakeaway" name="noTakeaway"
                             <?php
                             if (isset($_POST['noTakeaway']) && $_POST['noTakeaway']) {
                                 echo htmlspecialchars('checked');
                             }
-                            ?>> <label class="custom-control-label" for="noTakeaway">Can not order Takeaway</label>
+                            ?>> <label class="custom-control-label"
+                                       for="noTakeaway">Can not order Takeaway</label>
                     </div>
                 </div>
                 <!-- moodToCook -->
@@ -235,8 +242,8 @@ require_once('Api.php');
                 <!-- haveHw -->
                 <div class="form-group">
                     <div class="custom-control custom-checkbox">
-                        <input type="checkbox" class="custom-control-input" id="haveHw"
-                               name="haveHw"
+                        <input type="checkbox" class="custom-control-input"
+                               id="haveHw" name="haveHw"
                             <?php
                             if (isset($_POST['haveHw']) && $_POST['haveHw']) {
                                 echo htmlspecialchars('checked');
@@ -248,8 +255,8 @@ require_once('Api.php');
                 <!-- easyHw -->
                 <div class="form-group">
                     <div class="custom-control custom-checkbox">
-                        <input type="checkbox" class="custom-control-input" id="easyHw"
-                               name="easyHw"
+                        <input type="checkbox" class="custom-control-input"
+                               id="easyHw" name="easyHw"
                             <?php
                             if (isset($_POST['easyHw']) && $_POST['easyHw']) {
                                 echo htmlspecialchars('checked');
@@ -314,13 +321,13 @@ require_once('Api.php');
     <div class="container">
         <div class="card-footer bg-dark text-white">
             <div class="col">
-                <div class="row-cols" style="text-align: center">
+                <div class="row-cols">
                     <h5>Created by Panikos Christou and Cristian - Ionut Canciu</h5>
                 </div>
-                <div class="row-cols" style="text-align: center">
+                <div class="row-cols">
                     <h6>EPL434 - Logic Programming and Artificial Intelligence</h6>
                 </div>
-                <div class="row-cols"style="text-align: center">
+                <div class="row-cols">
                     <h6>University of Cyprus - Fall 2021-2022</h6>
                 </div>
             </div>

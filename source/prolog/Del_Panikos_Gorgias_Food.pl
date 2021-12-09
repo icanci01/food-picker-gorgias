@@ -7,7 +7,7 @@
 
 
 %method args
-:- dynamic noCook/0, noDelivery/0, noTakeaway/0, moodToCook/0 , haveHw/0, easyHw/0 .
+:- dynamic noCook/0, noDelivery/0, noTakeaway/0, moodToCook/0, haveHw/0, easyHw/0.
 
 %he prefers delivery than take away
 prefersDelivery.
@@ -20,29 +20,29 @@ complement(delivery(Method), takeaway(Method)).
 complement(takeaway(Method), delivery(Method)).
 complement(takeaway(Method), cook(Method)).
 
-%method argumentation
+% Method argumentation
 
 rule(emptyMethodRuleDel(Method), delivery(Method) , []).
 rule(emptyMethodRuleCook(Method), cook(Method) , []).
 rule(emptyMethodRuleTake(Method), takeaway(Method) , []).
 
-%Panikos Likes delivery than all then take away finally cook
+% Panikos Likes delivery than all then take away finally cook
 rule(delThanCookEmptyRule, prefer(emptyMethodRuleDel(Method), emptyMethodRuleCook(Method)), []).
 rule(takeThanCookEmptyRule, prefer(emptyMethodRuleTake(Method), emptyMethodRuleCook(Method)), []).
 
-%prefer del than take way - Cristian prefers otherwise
+% Prefer del than take way - Cristian prefers otherwise
 rule(delThanTakeEmptyRule, prefer(emptyMethodRuleDel(Method), emptyMethodRuleTake(Method)), []).
 
-%If he is in a moodToCook then he prefers Cook then Delivery then takeaway
-
-rule(moodToCookRule(Method), cook(Method) , []) :- moodToCook . %mood to cook rule
+% If he is in a moodToCook then he prefers Cook then Delivery then takeaway
+% mood to cook rule
+rule(moodToCookRule(Method), cook(Method) , []) :- moodToCook.
 
 rule(preferMoodToCook1, prefer(moodToCookRule(Method), emptyMethodRuleDel(Method)), []):- moodToCook.
 rule(preferMoodToCook2, prefer(moodToCookRule(Method), emptyMethodRuleTake(Method)), []):- moodToCook.
 rule(preferMoodToCook3, prefer(moodToCookRule(Method), emptyMethodRuleCook(Method)), []):- moodToCook.
 
 
-%If he has Hw then delivery and take away win over
+% If he has Hw then delivery and take away win over
 rule(haveHwRuleDel(Method), delivery(Method) , []) :- haveHw.
 rule(haveHwRuleTake(Method), takeaway(Method) , []) :- haveHw.
 
@@ -86,7 +86,7 @@ rule(preferHaveHwMoodRule2, prefer(haveHwMoodRuleDel(Method), haveHwMoodRuleTake
 rule(preferHaveHwMoodRule3, prefer(haveHwMoodRuleTake(Method), haveHwMoodRuleDel(Method)), []):- not(prefersDelivery) .
 
 %If we have Hw and but its ezHw then we cook
-rule(haveEzHwMoodToCookRule(Method), cook(Method) , []) :- haveHw,easyHw,moodToCook .
+rule(haveEzHwMoodToCookRule(Method), cook(Method) , []) :- haveHw, easyHw, moodToCook.
 
 rule(preferHaveEzHwMoodToCookRuleDel, prefer(haveEzHwMoodToCookRule(Method), haveHwMoodRuleDel(Method)), []).
 rule(preferHaveEzHwMoodToCookRuleTake, prefer(haveEzHwMoodToCookRule(Method), haveHwMoodRuleTake(Method)), []).
@@ -94,7 +94,7 @@ rule(preferHaveEzHwMoodToCookRuleTake, prefer(haveEzHwMoodToCookRule(Method), ha
 
 %If noDelivery then all possible Dels are neg
 
-rule(noDelivery(Method), neg(delivery(Method)) , []) :- noDelivery .
+rule(noDelivery(Method), neg(delivery(Method)) , []) :- noDelivery.
 
 rule(preferNoDelivery1, prefer(noDelivery(Method), emptyMethodRuleDel(Method)), []).
 rule(preferNoDelivery2, prefer(noDelivery(Method), haveHwRuleDel(Method)), []).
@@ -103,7 +103,7 @@ rule(preferNoDelivery3, prefer(noDelivery(Method), haveHwMoodRuleDel(Method)), [
 
 %If noCook then all possible Dels are neg
 
-rule(noCook(Method), neg(cook(Method)) , []) :- noCook .
+rule(noCook(Method), neg(cook(Method)) , []) :- noCook.
 
 rule(preferNoCook1, prefer(noCook(Method), emptyMethodRuleCook(Method)), []).
 rule(preferNoCook2, prefer(noCook(Method), moodToCookRule(Method)), []).
@@ -112,14 +112,14 @@ rule(preferNoCook3, prefer(noCook(Method), haveEzHwMoodToCookRule(Method)), []).
 
 %If noCook then all possible Dels are neg
 
-rule(noTakeawayRule(Method), neg(takeaway(Method)) , []) :- noTakeaway .
+rule(noTakeawayRule(Method), neg(takeaway(Method)) , []) :- noTakeaway.
 
 rule(preferNoTakeawayRule1, prefer(noTakeawayRule(Method), emptyMethodRuleTake(Method)), []).
 rule(preferNoTakeawayRule2, prefer(noTakeawayRule(Method), haveHwRuleTake(Method)), []).
 rule(preferNoTakeawayRule3, prefer(noTakeawayRule(Method), haveHwMoodRuleTake(Method)), []).
 
 %no options we cook because out of options
-rule(noOptions(Method), cook(Method) , []) :- noTakeaway, noCook, noDelivery .
+rule(noOptions(Method), cook(Method) , []) :- noTakeaway, noCook, noDelivery.
 
 rule(preferNoOptions1, prefer(noOptions(Method), noDelivery(Method)), []).
 rule(preferNoOptions2, prefer(noOptions(Method), noCook(Method)), []).

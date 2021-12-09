@@ -157,7 +157,7 @@ class LinkGorgiasWithPHP
         $factsList = array();
         $prologQueryObj = new QueryObj();
         $prologQueryObj->setResultSize(1);
-        $prologQueryObj->setTime(1000);
+        $prologQueryObj->setTime(1500);
 
         // Assert fact (defeasible conditions)
         if ($noCook) {
