@@ -17,13 +17,12 @@ class Api
             $noCook = isset($_POST["noCook"]);
             $noDelivery = isset($_POST["noDelivery"]);
             $noTakeaway = isset($_POST["noTakeaway"]);
-            $noOptions = isset($_POST["noCook"]) && isset($_POST["noDelivery"]) && isset($_POST["noTakeaway"]);
             $moodToCook = isset($_POST["moodToCook"]);
             $haveHw = isset($_POST["haveHw"]);
             $easyHw = isset($_POST["easyHw"]);
 
             $linkGorgiasWithPHP = new LinkGorgiasWithPHP();
-            return $linkGorgiasWithPHP->executeGorgias($userMod, $noCook, $noDelivery, $noTakeaway, $noOptions, $moodToCook, $haveHw, $easyHw);
+            return $linkGorgiasWithPHP->executeGorgias($userMod, $noCook, $noDelivery, $noTakeaway, $moodToCook, $haveHw, $easyHw);
         }
     }
 

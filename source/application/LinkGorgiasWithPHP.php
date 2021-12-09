@@ -130,7 +130,7 @@ class LinkGorgiasWithPHP
             return $this->deltaExplanation['preferCookingMoodToCookHaveHwEzHw'];
     }
 
-    public function executeGorgias($userMod, $noCook, $noDelivery, $noTakeway, $noOption, $moodToCook, $haveHw, $easyHw)
+    public function executeGorgias($userMod, $noCook, $noDelivery, $noTakeway, $moodToCook, $haveHw, $easyHw)
     {
 
         echo "<p>User Selected:&nbsp;";
@@ -159,13 +159,6 @@ class LinkGorgiasWithPHP
         $prologQueryObj->setResultSize(1);
         $prologQueryObj->setTime(1000);
 
-        // Assert fact (non-defeasible conditions)
-        if ($noOption) {
-            $fact = "noOptions";
-            $prologQueryObj->setQuery('assert(' . $fact . ').');
-            $result = $prologApiInstance->prologCommandUsingPOST($prologQueryObj);
-            $factsList[] = $fact;
-        }
         // Assert fact (defeasible conditions)
         if ($noCook) {
             $fact = "noCook";
