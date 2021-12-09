@@ -199,7 +199,7 @@ class LinkGorgiasWithPHP
         if ($userMod)
             $result = $prologApiInstance->consultFileUsingPOST("Del_Panikos_Gorgias_Food.pl", "project2_group1");
         else
-            $result = $prologApiInstance->consultFileUsingPOST("Cook_Cristian_Gorgias_food.pl", "project2_group1");
+            $result = $prologApiInstance->consultFileUsingPOST("Cook_Cristian_Gorgias_Food.pl", "project2_group1");
 
         $factsList = array();
         $prologQueryObj = new QueryObj();
@@ -283,34 +283,30 @@ class LinkGorgiasWithPHP
             }
         }
 
-//        // Prepare Gorgias query for cooking proving
-//        $queryCooking = "cook(m)";
-//        $gorgiasQueryCooking = "prove([" . $queryCooking . "],Delta)";
-//        $gorgiasQueryObj->setQuery($gorgiasQueryCooking);
-//        $response = $prologApiInstance->proveUsingPOST($gorgiasQueryObj);
-//
-//        if (is_array($response)) {
-//            if (preg_match('/^{Delta=(\[.*\])}$/', $response[0], $matches)) {
-//                $gorgiasResult["cook"] = true;
-//                $gorgiasResult["cookDelta"] = $this->parseDeltaToPHPArray($matches[1]);
-//            }
-//        }
-//
-//        // Prepare Gorgias query for takeaway proving
-//        $queryTakeaway = "takeaway(m)";
-//        $gorgiasQueryTakeaway = "prove([" . $queryTakeaway . "],Delta)";
-//        $gorgiasQueryObj->setQuery($gorgiasQueryTakeaway);
-//        $response = $prologApiInstance->proveUsingPOST($gorgiasQueryObj);
-//
-//        if (is_array($response)) {
-//            if (preg_match('/^{Delta=(\[.*\])}$/', $response[0], $matches)) {
-//                $gorgiasResult["takeaway"] = true;
-//                $gorgiasResult["takeawayDelta"] = $this->parseDeltaToPHPArray($matches[1]);
-//            }
-//        }
+        // Prepare Gorgias query for cooking proving
+        $queryCooking = "cook(m)";
+        $gorgiasQueryCooking = "prove([" . $queryCooking . "],Delta)";
+        $gorgiasQueryObj->setQuery($gorgiasQueryCooking);
+        $response = $prologApiInstance->proveUsingPOST($gorgiasQueryObj);
 
-        foreach ($factsList as $fact_temp) {
-            echo nl2br($fact_temp . "\n");
+        if (is_array($response)) {
+            if (preg_match('/^{Delta=(\[.*\])}$/', $response[0], $matches)) {
+                $gorgiasResult["cook"] = true;
+                $gorgiasResult["cookDelta"] = $this->parseDeltaToPHPArray($matches[1]);
+            }
+        }
+
+        // Prepare Gorgias query for takeaway proving
+        $queryTakeaway = "takeaway(m)";
+        $gorgiasQueryTakeaway = "prove([" . $queryTakeaway . "],Delta)";
+        $gorgiasQueryObj->setQuery($gorgiasQueryTakeaway);
+        $response = $prologApiInstance->proveUsingPOST($gorgiasQueryObj);
+
+        if (is_array($response)) {
+            if (preg_match('/^{Delta=(\[.*\])}$/', $response[0], $matches)) {
+                $gorgiasResult["takeaway"] = true;
+                $gorgiasResult["takeawayDelta"] = $this->parseDeltaToPHPArray($matches[1]);
+            }
         }
 
         // Retract all facts

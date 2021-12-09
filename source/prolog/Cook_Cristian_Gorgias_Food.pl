@@ -92,7 +92,7 @@ rule(preferNoDelivery3, prefer(noDelivery(Method), haveHwMoodRuleDel(Method)), [
 
 %If noCook then all possible Dels are neg
 
-rule(noCook(Method), neg(cook(Method)) , []) :- noCook .
+rule(noCook(Method), neg(cook(Method)), []) :- noCook .
 
 rule(preferNoCook1, prefer(noCook(Method), emptyMethodRuleCook(Method)), []).  
 rule(preferNoCook2, prefer(noCook(Method), moodToCookRule(Method)), []).  
@@ -101,7 +101,7 @@ rule(preferNoCook3, prefer(noCook(Method), haveEzHwRule(Method)), []).
 
 %If noCook then all possible Dels are neg
 
-rule(noTakeawayRule(Method), neg(takeAway(Method)) , []) :- noTakeaway .
+rule(noTakeawayRule(Method), neg(takeAway(Method)), []) :- noTakeaway .
 
 rule(preferNoTakeawayRule1, prefer(noTakeawayRule(Method), emptyMethodRuleTake(Method)), []).  
 rule(preferNoTakeawayRule2, prefer(noTakeawayRule(Method), haveHwRuleTake(Method)), []). 
