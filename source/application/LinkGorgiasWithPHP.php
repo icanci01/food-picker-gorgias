@@ -14,14 +14,14 @@ class LinkGorgiasWithPHP
         $this->deltaExplanation = array();
 
         // First level preference
-        $this->deltaExplanation['emptyMethodRuleCook'] = 'Normally, I prefer <u><b>cooking</b><u> my food!';
+        $this->deltaExplanation['emptyMethodRuleCook'] = 'Normally, I prefer <u><b>cooking</b></u> my food!';
         $this->deltaExplanation['emptyMethodRuleTake'] = 'Normally, I prefer ordering <u><b>takeaway</b><u>!';
         $this->deltaExplanation['emptyMethodRuleDel'] = 'Normally, I prefer ordering <u><b>delivery</b><u>!';
 
         // Second layer of preferences, (COOK : TAKEAWAY : DELIVERY)
-        $this->deltaExplanation['cookThanTakeEmptyRule'] = 'Normally, I prefer <u><b>cooking</b><u> than ordering <b>takeaway</b>!';
-        $this->deltaExplanation['cookThanDelEmptyRule'] = 'Normally, I prefer <u><b>cooking</b><u> than ordering <b>delivery</b>!';
-        $this->deltaExplanation['takeThanDelEmptyRule'] = 'Normally, I prefer ordering <u><b>takeaway</b><u> than ordering <b>delivery</b>!';
+        $this->deltaExplanation['cookThanTakeEmptyRule'] = 'Normally, I prefer <u><b>cooking</b></u> than ordering <b>takeaway</b>!';
+        $this->deltaExplanation['cookThanDelEmptyRule'] = 'Normally, I prefer <u><b>cooking</b></u> than ordering <b>delivery</b>!';
+        $this->deltaExplanation['takeThanDelEmptyRule'] = 'Normally, I prefer ordering <u><b>takeaway</b></u> than ordering <b>delivery</b>!';
 
         // Preference based on (moodToCook/1)
         $this->deltaExplanation['preferMoodToCook1'] = 'Normally, I prefer <b>cooking</b> and since i am <b>in the mood to cook<b> I will <u><b>cook</b><u>!';
@@ -276,6 +276,9 @@ class LinkGorgiasWithPHP
         $gorgiasQueryObj->setQuery($gorgiasQueryDelivery);
         $response = $prologApiInstance->proveUsingPOST($gorgiasQueryObj);
 
+        if($response)
+            echo "WORKS1";
+
         if (is_array($response)) {
             if (preg_match('/^{Delta=(\[.*\])}$/', $response[0], $matches)) {
                 $gorgiasResult["delivery"] = true;
@@ -289,6 +292,9 @@ class LinkGorgiasWithPHP
         $gorgiasQueryObj->setQuery($gorgiasQueryCooking);
         $response = $prologApiInstance->proveUsingPOST($gorgiasQueryObj);
 
+        if($response)
+            echo "WORKS2";
+
         if (is_array($response)) {
             if (preg_match('/^{Delta=(\[.*\])}$/', $response[0], $matches)) {
                 $gorgiasResult["cook"] = true;
@@ -301,6 +307,9 @@ class LinkGorgiasWithPHP
         $gorgiasQueryTakeaway = "prove([" . $queryTakeaway . "],Delta)";
         $gorgiasQueryObj->setQuery($gorgiasQueryTakeaway);
         $response = $prologApiInstance->proveUsingPOST($gorgiasQueryObj);
+
+        if($response)
+            echo "WORK3";
 
         if (is_array($response)) {
             if (preg_match('/^{Delta=(\[.*\])}$/', $response[0], $matches)) {
