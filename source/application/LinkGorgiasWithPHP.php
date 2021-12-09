@@ -15,64 +15,32 @@ class LinkGorgiasWithPHP
 
         // First level preference
         $this->deltaExplanation['emptyMethodRuleCook'] = 'Normally, I prefer <u><b>cooking</b></u> my food!';
-        $this->deltaExplanation['emptyMethodRuleTake'] = 'Normally, I prefer ordering <u><b>takeaway</b><u>!';
-        $this->deltaExplanation['emptyMethodRuleDel'] = 'Normally, I prefer ordering <u><b>delivery</b><u>!';
+        $this->deltaExplanation['emptyMethodRuleDel'] = 'Normally, I prefer ordering <u><b>delivery</b></u>!';
+        $this->deltaExplanation['emptyMethodRuleTake'] = 'Normally, I prefer ordering <u><b>takeaway</b></u>!';
 
-        // Second layer of preferences, (COOK : TAKEAWAY : DELIVERY)
-        $this->deltaExplanation['cookThanTakeEmptyRule'] = 'Normally, I prefer <u><b>cooking</b></u> than ordering <b>takeaway</b>!';
-        $this->deltaExplanation['cookThanDelEmptyRule'] = 'Normally, I prefer <u><b>cooking</b></u> than ordering <b>delivery</b>!';
-        $this->deltaExplanation['takeThanDelEmptyRule'] = 'Normally, I prefer ordering <u><b>takeaway</b></u> than ordering <b>delivery</b>!';
+        // Cristian Scenarios preferences
+        $this->deltaExplanation['preferCookingNoOption'] = 'Normally, I prefer <b>cooking</b>, and I will <u><b>cook</b></u> since I have no other option!';
+        $this->deltaExplanation['preferCookingNoCook'] = 'Normally, I prefer <b>cooking</b>, and I will order <u><b>takeaway</b></u> since I can not <b>cook</b>!';
+        $this->deltaExplanation['preferCookingEzHw'] = 'Normally, I prefer <b>cooking</b>, and I will <u><b>cook</b></u> since I have an <b>easy homework</b>!';
+        $this->deltaExplanation['preferCookingHaveHw'] = 'Normally, I prefer <b>cooking</b>, but I will order <u><b>takeaway</b></u> since I have <b>homework</b>!';
+        $this->deltaExplanation['preferCookingNoCookNoTakeaway'] = 'Normally, I prefer <b>cooking</b> and then <b>takeaway</b>, but I will order <u><b>delivery</b></u> since I can not <b>cook</b> or order <b>takeaway</b>!';
+        $this->deltaExplanation['preferCookingMoodToCookHaveHw'] = 'Normally, I prefer <b>cooking</b> and then <b>takeaway</b>. Even if I am <b>in the mood to cook</b>, I will order <u><b>takeaway</b></u> since I <b>have homework</b>!';
+        $this->deltaExplanation['preferCookingMoodToCookNoCook'] = 'Normally, I prefer <b>cooking</b> and then <b>takeaway</b>. I will order <u><b>takeaway</b></u> since I can not <b>cook</b>!';
+        $this->deltaExplanation['preferCookingMoodToCookNoCookNoTakeaway'] = 'Normally, I prefer <b>cooking</b> and then <b>takeaway</b>. Even if I am <b>in the mood to cook</b>, I will order <u><b>delivery</b></u> since I can not <b>cook</b> or order <b>takeaway</b>!';
+        $this->deltaExplanation['preferCookingMoodToCookNoCookNoTakeawayHaveHw'] = 'Normally, I prefer <b>cooking</b> and then <b>takeaway</b>. Even if I am <b>in the mood to cook</b>, I will order <u><b>delivery</b></u> since I <b>have homework</b> and I can not <b>cook</b> or order <b>takeaway</b>!';
 
-        // Preference based on (moodToCook/1)
-        $this->deltaExplanation['preferMoodToCook1'] = 'Normally, I prefer <b>cooking</b> and since i am <b>in the mood to cook<b> I will <u><b>cook</b><u>!';
-        $this->deltaExplanation['preferMoodToCook2'] = 'Normally, I prefer ordering <b>takeaway</b> however, since i am <b>in the mood to cook<b> I will <u><b>cook</b><u>!';
-        $this->deltaExplanation['preferMoodToCook3'] = 'Normally, I prefer ordering <b>delivery</b> however, since i am <b>in the mood to cook<b> I will <u><b>cook</b><u>!';
+        // Panikos Scenarios preferences
+        $this->deltaExplanation['preferDeliveryMoodToCookNoCookHaveHw'] = 'Normally, I prefer <b>delivery</b> and then <b>takeaway</b>. Even if I am <b>in the mood to cook</b>, I will order <u><b>delivery</b></u> since I <b>have homework</b> and I can not <b>cook</b>!';
+        $this->deltaExplanation['preferDeliveryMoodToCookNoCookNoTakeawayHaveHw'] = 'Normally, I prefer <b>delivery</b> and then <b>takeaway</b>. Even if I am <b>in the mood to cook</b>, I will order <u><b>delivery</b></u> since I <b>have homework</b> and I can not <b>cook</b> or order <b>takeaway</b>!';
+        $this->deltaExplanation['preferDeliverMoodToCookNoCook'] = 'Normally, I prefer <b>delivery</b> and then <b>takeaway</b>. Even if I am <b>in the mood to cook</b>, I will order <u><b>delivery</b></u> since I can not <b>cook</b>!';
+        $this->deltaExplanation['preferDeliverHaveHw'] = 'Normally, I prefer <b>delivery</b> and then <b>takeaway</b> and I will order <u><b>delivery</b></u> since I <b>have homework</b>!';
+        $this->deltaExplanation['preferDeliverMoodToCookHaveHw'] = 'Normally, I prefer <b>delivery</b> and then <b>takeaway</b>. Even if I am <b>in the mood to cook</b>, I will order <u><b>delivery</b></u> since I <b>have homework</b>!';
+        $this->deltaExplanation['preferDeliveryNoDelivery'] = 'Normally, I prefer <b>delivery</b> and then <b>takeaway</b>. Since I can not order <b>delivery</b>, I will order <u><b>takeaway</b></u>!';
+        $this->deltaExplanation['preferDeliveryNoOption'] = 'Normally, I prefer <b>delivery</b> and then <b>takeaway</b>. However, I will <u><b>cook</b></u> since I have no other option!';
+        $this->deltaExplanation['preferDeliverMoodToCook'] = 'Normally, I prefer <b>delivery</b> and then <b>takeaway</b>. However, I will <u><b>cook</b></u> since I am <b>in the mood to cook</b>!';
+        $this->deltaExplanation['preferDeliveryNoDeliveryNoTakeaway'] = 'Normally, I prefer <b>delivery</b> and then <b>takeaway</b>. However, I will <u><b>cook</b></u> since can not order <b>delivery</b> or <b>takeaway</b>!';
+        $this->deltaExplanation['preferCookingMoodToCookHaveHwEzHw'] = 'Normally, I prefer <b>delivery</b> and then <b>takeaway</b>. However, I will <u><b>cook</b></u> since I am <b>in the mood to cook</b> and I am assigned an <b>easy homework</b>!';
 
-        // Preference based on (haveHw/1)
-        $this->deltaExplanation['preferHaveHwRuleDel1'] = 'Normally, I prefer <b>cooking</b> and since I <b>have homework<b> I should order <u><b>delivery</b><u>!';
-        $this->deltaExplanation['preferHaveHwRuleDel2'] = 'Normally, I prefer ordering <b>takeaway</b> however, since I <b>have homework<b> I will order <u><b>delivery</b><u>!';
-        $this->deltaExplanation['preferHaveHwRuleDel3'] = 'Normally, I prefer ordering <b>delivery</b> however, since I <b>have homework<b> I will order <u><b>delivery</b><u>!';
-        $this->deltaExplanation['preferHaveHwRuleTake1'] = 'Normally, I prefer <b>cooking</b> and since I <b>have homework<b> I should order <u><b>takeaway</b><u>!';
-        $this->deltaExplanation['preferHaveHwRuleTake2'] = 'Normally, I prefer ordering <b>takeaway</b> however, since I <b>have homework<b> I will order <u><b>takeaway</b><u>!';
-        $this->deltaExplanation['preferHaveHwRuleTake3'] = 'Normally, I prefer ordering <b>delivery</b> however, since I <b>have homework<b> I will order <u><b>takeaway</b><u>!';
-
-        //-- Preference based on (haveHw/1. prefersCooking. / first order priority)
-        $this->deltaExplanation['preferHaveHwRule1'] = 'Normally, I prefer <b>cooking</b> and since I <b>have homework<b> I will order <u><b>delivery</b><u>!';
-
-        // Preference based on (haveHw/1. moodToCook/1 )
-        $this->deltaExplanation['preferHaveHwMoodRuleDel1'] = 'Normally, I prefer <b>cooking</b> but I <b>have homework<b>, I will order <u><b>delivery</b><u>, even if I am <b>in the mood to cook</b>!';
-        $this->deltaExplanation['preferHaveHwMoodRuleDel2'] = 'Normally, I prefer <b>cooking</b> but I <b>have homework<b>, I will order <u><b>delivery</b><u>, even if I am <b>in the mood to cook</b>!';
-        $this->deltaExplanation['preferHaveHwMoodRuleDel3'] = 'Normally, I prefer <b>cooking</b> but I <b>have homework<b>, I will order <u><b>delivery</b><u>, even if I am <b>in the mood to cook</b>!';
-
-        $this->deltaExplanation['preferHaveHwMoodRuleTake1'] = 'Normally, I prefer <b>cooking</b> but I <b>have homework<b> I will order <u><b>takeaway</b><u>, even if I am <b>in the mood to cook</b>!';
-        $this->deltaExplanation['preferHaveHwMoodRuleTake2'] = 'Normally, I prefer <b>cooking</b> but I <b>have homework<b> I will order <u><b>takeaway</b><u>, even if I am <b>in the mood to cook</b>!';
-        $this->deltaExplanation['preferHaveHwMoodRuleTake3'] = 'Normally, I prefer <b>cooking</b> but I <b>have homework<b> I will order <u><b>takeaway</b><u>, even if I am <b>in the mood to cook</b>!';
-
-        //-- Preference based on (haveHw/1. moodToCook/1. prefersCooking. / first order priority)
-        $this->deltaExplanation['preferHaveHwMoodRuleDelW'] = 'Normally, I prefer <b>cooking</b> and since I <b>have homework<b> I will order <u><b>delivery</b><u>, even if I am <b>in the mood to cook</b>,!';
-
-        // Preference based on (haveHw/1. easyHw/1.)
-        $this->deltaExplanation['preferHaveEzHwMoodToCookRuleDel'] = 'Normally, I prefer <b>cooking</b> and since I <b>have homework<b> and it is an <b>easy homework</b>, I will <u><b>cook</b><u>!';
-        $this->deltaExplanation['preferHaveEzHwMoodToCookRuleTake'] = 'Normally, I prefer <b>cooking</b> and since I <b>have homework<b> and it is an <b>easy homework</b>, I will <u><b>cook</b><u>!';
-
-        // Preference based on (noDelivery/1.)
-        $this->deltaExplanation['preferNoDelivery1'] = 'Normally, I prefer <b>cooking</b> and I will <u><b>cook</b><u>, since I can not order <b>delivery</b>!';
-        $this->deltaExplanation['preferNoDelivery2'] = 'Normally, I prefer <b>cooking</b> and since I <b>have homework</b> and since I can not order <b>delivery</b>, I will <u><b>cook</b><u>!';
-        $this->deltaExplanation['preferNoDelivery3'] = 'Normally, I prefer <b>cooking</b> and since I <b>have homework</b> and I am <b>in the mood to cook<b> and since I can not order <b>delivery</b>,, I will <u><b>cook</b><u>!';
-
-        // Preference based on (noCook/1.)
-        $this->deltaExplanation['preferNoCook1'] = 'Normally, I prefer <b>cooking</b> and I will order <u><b>takeaway</b><u>, since I can not <b>cook</b>!';
-        $this->deltaExplanation['preferNoCook2'] = 'Normally, I prefer <b>cooking</b> and since I <b>have homework</b> but since I can not <b>cook</b>, I will order<u><b>takeaway</b><u>, even if I am in the <b>mood to cook</b>!';
-        $this->deltaExplanation['preferNoCook3'] = 'Normally, I prefer <b>cooking</b> and since I <b>have easy homework</b> but since I can not <b>cook</b>, I will order<u><b>takeaway</b><u>!';
-
-        // Preference based on (noTakeaway/1.)
-        $this->deltaExplanation['preferNoTakeawayRule1'] = 'Normally, I prefer <b>cooking</b> and I will <u><b>cook</b><u>, since I can not order <b>takeaway</b>!';
-        $this->deltaExplanation['preferNoTakeawayRule2'] = 'Normally, I prefer <b>cooking</b> but since I <b>have homework</b> and since I can not order <b>takeaway</b>, I will order<u><b>delivery</b><u>!';
-        $this->deltaExplanation['preferNoTakeawayRule3'] = 'Normally, I prefer <b>cooking</b> but since I <b>have easy homework</b> and since I can not order <b>takeaway</b>, I will order <u><b>delivery</b><u>!';
-        $this->deltaExplanation['preferNoTakeawayRule4'] = 'Normally, I prefer <b>cooking</b> but since I am <b>in the mood to cook<b> and since I can not order <b>delivery</b>, I will <u><b>cook</b><u>!';
-
-        // Preference based on (noOptions/1.)
-        $this->deltaExplanation['preferNoOptions1'] = 'Normally, I prefer <b>cooking</b> and I will <u><b>cook</b><u>, since I have <b>no options</b> left!';
     }
 
     private function generateResultArray($obj)
@@ -102,79 +70,64 @@ class LinkGorgiasWithPHP
 
     private function createExplanationFromGorgiasDelta($deltaArray)
     {
+        // emptyMethodRuleCook
         if (in_array('emptyMethodRuleCook', $deltaArray)) {
-            return $this->deltaExplanation['emptyMethodRuleCook'];
-        } else if (in_array('emptyMethodRuleTake', $deltaArray)) {
-            return $this->deltaExplanation['emptyMethodRuleTake'];
-        } else if (in_array('emptyMethodRuleDel', $deltaArray)) {
-            return $this->deltaExplanation['emptyMethodRuleDel'];
-        } else if (in_array('cookThanTakeEmptyRule', $deltaArray)) {
-            return $this->deltaExplanation['cookThanTakeEmptyRule'];
-        } else if (in_array('cookThanDelEmptyRule', $deltaArray)) {
-            return $this->deltaExplanation['cookThanDelEmptyRule'];
-        } else if (in_array('takeThanDelEmptyRule', $deltaArray)) {
-            return $this->deltaExplanation['takeThanDelEmptyRule'];
-        } else if (in_array('preferMoodToCook1', $deltaArray)) {
-            return $this->deltaExplanation['preferMoodToCook1'];
-        } else if (in_array('preferMoodToCook2', $deltaArray)) {
-            return $this->deltaExplanation['preferMoodToCook2'];
-        } else if (in_array('preferMoodToCook3', $deltaArray)) {
-            return $this->deltaExplanation['preferMoodToCook3'];
-        } else if (in_array('preferHaveHwRuleDel1', $deltaArray)) {
-            return $this->deltaExplanation['preferHaveHwRuleDel1'];
-        } else if (in_array('preferHaveHwRuleDel2', $deltaArray)) {
-            return $this->deltaExplanation['preferHaveHwRuleDel2'];
-        } else if (in_array('preferHaveHwRuleDel3', $deltaArray)) {
-            return $this->deltaExplanation['preferHaveHwRuleDel3'];
-        } else if (in_array('preferHaveHwRuleTake1', $deltaArray)) {
-            return $this->deltaExplanation['preferHaveHwRuleTake1'];
-        } else if (in_array('preferHaveHwRuleTake2', $deltaArray)) {
-            return $this->deltaExplanation['preferHaveHwRuleTake2'];
-        } else if (in_array('preferHaveHwRuleTake3', $deltaArray)) {
-            return $this->deltaExplanation['preferHaveHwRuleTake3'];
-        } else if (in_array('preferHaveHwRule1', $deltaArray)) {
-            return $this->deltaExplanation['preferHaveHwRule1'];
-        } else if (in_array('preferHaveHwMoodRuleDel1', $deltaArray)) {
-            return $this->deltaExplanation['preferHaveHwMoodRuleDel1'];
-        } else if (in_array('preferHaveHwMoodRuleDel2', $deltaArray)) {
-            return $this->deltaExplanation['preferHaveHwMoodRuleDel2'];
-        } else if (in_array('preferHaveHwMoodRuleDel3', $deltaArray)) {
-            return $this->deltaExplanation['preferHaveHwMoodRuleDel3'];
-        } else if (in_array('preferHaveHwMoodRuleTake1', $deltaArray)) {
-            return $this->deltaExplanation['preferHaveHwMoodRuleTake1'];
-        } else if (in_array('preferHaveHwMoodRuleTake2', $deltaArray)) {
-            return $this->deltaExplanation['preferHaveHwMoodRuleTake2'];
-        } else if (in_array('preferHaveHwMoodRuleTake3', $deltaArray)) {
-            return $this->deltaExplanation['preferHaveHwMoodRuleTake3'];
-        } else if (in_array('preferHaveHwMoodRuleDelW', $deltaArray)) {
-            return $this->deltaExplanation['preferHaveHwMoodRuleDelW'];
-        } else if (in_array('preferHaveEzHwMoodToCookRuleDel', $deltaArray)) {
-            return $this->deltaExplanation['preferHaveEzHwMoodToCookRuleDel'];
-        } else if (in_array('preferHaveEzHwMoodToCookRuleTake', $deltaArray)) {
-            return $this->deltaExplanation['preferHaveEzHwMoodToCookRuleTake'];
-        } else if (in_array('preferNoDelivery1', $deltaArray)) {
-            return $this->deltaExplanation['preferNoDelivery1'];
-        } else if (in_array('preferNoDelivery2', $deltaArray)) {
-            return $this->deltaExplanation['preferNoDelivery2'];
-        } else if (in_array('preferNoDelivery3', $deltaArray)) {
-            return $this->deltaExplanation['preferNoDelivery3'];
-        } else if (in_array('preferNoCook1', $deltaArray)) {
-            return $this->deltaExplanation['preferNoCook1'];
-        } else if (in_array('preferNoCook2', $deltaArray)) {
-            return $this->deltaExplanation['preferNoCook2'];
-        } else if (in_array('preferNoCook3', $deltaArray)) {
-            return $this->deltaExplanation['preferNoCook3'];
-        } else if (in_array('preferNoTakeawayRule1', $deltaArray)) {
-            return $this->deltaExplanation['preferNoTakeawayRule1'];
-        } else if (in_array('preferNoTakeawayRule2', $deltaArray)) {
-            return $this->deltaExplanation['preferNoTakeawayRule2'];
-        } else if (in_array('preferNoTakeawayRule3', $deltaArray)) {
-            return $this->deltaExplanation['preferNoTakeawayRule3'];
-        } else if (in_array('preferNoTakeawayRule4', $deltaArray)) {
-            return $this->deltaExplanation['preferNoTakeawayRule4'];
-        } else if (in_array('preferNoOptions1', $deltaArray) && in_array('preferNoOptions2', $deltaArray) && in_array('preferNoOptions3', $deltaArray)) {
-            return $this->deltaExplanation['preferNoOptions'];
+            if (in_array('noOptions', $deltaArray) && in_array('preferNoOptions2', $deltaArray))
+                if (in_array('noTakeawayRule', $deltaArray) && in_array('preferNoTakeawayRule1', $deltaArray)&& in_array('noDelivery', $deltaArray)&& in_array('preferNoDelivery1', $deltaArray))
+                    return $this->deltaExplanation['preferDeliveryNoOption'];
+                else
+                    return $this->deltaExplanation['preferCookingNoOption'];
+            else if (in_array('preferHaveEzHwMoodToCookRuleTake', $deltaArray) && in_array('haveEzHwRule', $deltaArray) && in_array('preferHaveEzHwMoodToCookRuleDel', $deltaArray))
+                return $this->deltaExplanation['preferCookingEzHw'];
+            else if (in_array('preferMoodToCook2', $deltaArray) && in_array('moodToCookRule', $deltaArray)&& in_array('preferMoodToCook1', $deltaArray))
+                return $this->deltaExplanation['preferDeliverMoodToCook'];
+            else if (in_array('noTakeawayRule', $deltaArray) && in_array('preferNoTakeawayRule1', $deltaArray)&& in_array('noDelivery', $deltaArray)&& in_array('preferNoDelivery1', $deltaArray))
+                return $this->deltaExplanation['preferDeliveryNoDeliveryNoTakeaway'];
+            else
+                return $this->deltaExplanation['emptyMethodRuleCook'];
+        } // emptyMethodRuleDel
+        else if (in_array('emptyMethodRuleDel', $deltaArray)) {
+            if (in_array('noTakeawayRule', $deltaArray) && in_array('preferNoTakeawayRule1', $deltaArray) && in_array('noCook', $deltaArray) && in_array('preferNoCook1', $deltaArray))
+                if (in_array('preferNoCook2', $deltaArray))
+                    return $this->deltaExplanation['preferCookingMoodToCookNoCookNoTakeaway'];
+                else
+                    return $this->deltaExplanation['preferCookingNoCookNoTakeaway'];
+            else if (in_array('preferHaveHwRuleDel2', $deltaArray) && in_array('preferHaveHwMoodRuleDel3', $deltaArray) && in_array('noTakeawayRule', $deltaArray) && in_array('preferNoTakeawayRule3', $deltaArray) && in_array('haveHwMoodRuleDel', $deltaArray) && in_array('preferHaveHwMoodRuleDel2', $deltaArray) && in_array('haveHwRuleDel', $deltaArray) && in_array('preferHaveHwRuleDel3', $deltaArray))
+                return $this->deltaExplanation['preferCookingMoodToCookNoCookNoTakeawayHaveHw'];
+            else if (in_array('noCook', $deltaArray) && in_array('preferNoCook2', $deltaArray))
+                if (in_array('noTakeawayRule', $deltaArray) && in_array('preferNoTakeawayRule2', $deltaArray))
+                    return $this->deltaExplanation['preferDeliveryMoodToCookNoCookNoTakeawayHaveHw'];
+                else if (in_array('haveHwMoodRuleDel', $deltaArray) && in_array('preferHaveHwMoodRule2', $deltaArray) && in_array('haveHwRuleDel', $deltaArray) && in_array('preferHaveHwRule', $deltaArray))
+                    return $this->deltaExplanation['preferDeliveryMoodToCookNoCookHaveHw'];
+                else
+                    return $this->deltaExplanation['preferDeliverMoodToCookNoCook'];
+            else if (in_array('haveHwRuleDel', $deltaArray) && in_array('preferHaveHwRule', $deltaArray))
+                if (in_array('haveHwMoodRuleDel', $deltaArray) && in_array('preferHaveHwMoodRule2', $deltaArray) && in_array('preferHaveHwMoodRuleDel3', $deltaArray))
+                    return $this->deltaExplanation['preferDeliverMoodToCookHaveHw'];
+                else
+                    return $this->deltaExplanation['preferDeliverHaveHw'];
+            else
+                return $this->deltaExplanation['emptyMethodRuleDel'];
+        } // emptyMethodRuleTake
+        else if (in_array('emptyMethodRuleTake', $deltaArray)) {
+            if (in_array('noCook', $deltaArray) && in_array('preferNoCook1', $deltaArray))
+                if (in_array('preferNoCook2', $deltaArray))
+                    return $this->deltaExplanation['preferCookingMoodToCookNoCook'];
+                else
+                    return $this->deltaExplanation['preferCookingNoCook'];
+            else if (in_array('preferHaveHwRuleTake3', $deltaArray) && in_array('haveHwRuleTake', $deltaArray) && in_array('preferHaveHwRule2', $deltaArray))
+                if (in_array('preferHaveHwMoodRuleTake3', $deltaArray) && in_array('preferHaveHwMoodRuleTake3', $deltaArray) && in_array('preferHaveHwMoodRuleTake4', $deltaArray))
+                    return $this->deltaExplanation['preferCookingMoodToCookHaveHw'];
+                else
+                    return $this->deltaExplanation['preferCookingHaveHw'];
+            else if (in_array('noDelivery', $deltaArray) && in_array('preferNoDelivery1', $deltaArray))
+                return $this->deltaExplanation['preferDeliveryNoDelivery'];
+            else
+                return $this->deltaExplanation['emptyMethodRuleTake'];
         }
+        // moodToCook last option Panikos
+        else if (in_array('preferHaveEzHwMoodToCookRuleTake', $deltaArray) && in_array('haveEzHwMoodToCookRule', $deltaArray) && in_array('preferHaveEzHwMoodToCookRuleDel', $deltaArray)&& in_array('moodToCookRule', $deltaArray))
+            return $this->deltaExplanation['preferCookingMoodToCookHaveHwEzHw'];
     }
 
     public function executeGorgias($userMod, $noCook, $noDelivery, $noTakeway, $noOption, $moodToCook, $haveHw, $easyHw)
@@ -190,8 +143,8 @@ class LinkGorgiasWithPHP
         $prologApiInstance = new PrologControllerApi();
 
         // Configure HTTP basic authorization: basicAuth
-        $prologApiInstance->getConfig()->setUsername("icanci01");
-        $prologApiInstance->getConfig()->setPassword("Pavilion911167-");
+        $prologApiInstance->getConfig()->setUsername("pchris08");
+        $prologApiInstance->getConfig()->setPassword("X9ZYWZnSC6jr4dx");
         $prologApiInstance->getConfig()->setHost("http://aiasvm1.amcl.tuc.gr:8085");
 
         // Consult the  Gorgias policy file from the specific project:
@@ -276,8 +229,6 @@ class LinkGorgiasWithPHP
         $gorgiasQueryObj->setQuery($gorgiasQueryDelivery);
         $response = $prologApiInstance->proveUsingPOST($gorgiasQueryObj);
 
-        if($response)
-            echo "WORKS1";
 
         if (is_array($response)) {
             if (preg_match('/^{Delta=(\[.*\])}$/', $response[0], $matches)) {
@@ -292,9 +243,6 @@ class LinkGorgiasWithPHP
         $gorgiasQueryObj->setQuery($gorgiasQueryCooking);
         $response = $prologApiInstance->proveUsingPOST($gorgiasQueryObj);
 
-        if($response)
-            echo "WORKS2";
-
         if (is_array($response)) {
             if (preg_match('/^{Delta=(\[.*\])}$/', $response[0], $matches)) {
                 $gorgiasResult["cook"] = true;
@@ -307,9 +255,6 @@ class LinkGorgiasWithPHP
         $gorgiasQueryTakeaway = "prove([" . $queryTakeaway . "],Delta)";
         $gorgiasQueryObj->setQuery($gorgiasQueryTakeaway);
         $response = $prologApiInstance->proveUsingPOST($gorgiasQueryObj);
-
-        if($response)
-            echo "WORK3";
 
         if (is_array($response)) {
             if (preg_match('/^{Delta=(\[.*\])}$/', $response[0], $matches)) {

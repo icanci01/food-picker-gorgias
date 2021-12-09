@@ -114,9 +114,9 @@ rule(preferNoCook3, prefer(noCook(Method), haveEzHwMoodToCookRule(Method)), []).
 
 rule(noTakeawayRule(Method), neg(takeaway(Method)) , []) :- noTakeaway .
 
-rule(prefernoTakeawayRule1, prefer(noTakeawayRule(Method), emptyMethodRuleTake(Method)), []).
-rule(prefernoTakeawayRule2, prefer(noTakeawayRule(Method), haveHwRuleTake(Method)), []).
-rule(prefernoTakeawayRule3, prefer(noTakeawayRule(Method), haveHwMoodRuleTake(Method)), []).
+rule(preferNoTakeawayRule1, prefer(noTakeawayRule(Method), emptyMethodRuleTake(Method)), []).
+rule(preferNoTakeawayRule2, prefer(noTakeawayRule(Method), haveHwRuleTake(Method)), []).
+rule(preferNoTakeawayRule3, prefer(noTakeawayRule(Method), haveHwMoodRuleTake(Method)), []).
 
 %no options we cook because out of options
 rule(noOptions(Method), cook(Method) , []) :- noTakeaway, noCook, noDelivery .
