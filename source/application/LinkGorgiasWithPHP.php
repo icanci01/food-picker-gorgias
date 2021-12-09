@@ -143,8 +143,8 @@ class LinkGorgiasWithPHP
         $prologApiInstance = new PrologControllerApi();
 
         // Configure HTTP basic authorization: basicAuth
-        $prologApiInstance->getConfig()->setUsername("pchris08");
-        $prologApiInstance->getConfig()->setPassword("X9ZYWZnSC6jr4dx");
+        $prologApiInstance->getConfig()->setUsername("icanci01");
+        $prologApiInstance->getConfig()->setPassword("Pavilion911167-");
         $prologApiInstance->getConfig()->setHost("http://aiasvm1.amcl.tuc.gr:8085");
 
         // Consult the  Gorgias policy file from the specific project:
