@@ -182,9 +182,9 @@ class LinkGorgiasWithPHP
 
         echo "<p>User Selected:&nbsp;";
         if ($userMod)
-            echo nl2br("<b>PANIKOS</b></p>\n ");
+            echo nl2br("<b>PANIKOS</b></p>");
         else
-            echo nl2br("<b>CRISTIAN</b></p>\n");
+            echo nl2br("<b>CRISTIAN</b></p>");
 
         // Create prolog API object instance
         $prologApiInstance = new PrologControllerApi();
@@ -243,7 +243,7 @@ class LinkGorgiasWithPHP
         }
         // Assert fact (defeasible conditions)
         if ($haveHw) {
-            $fact = "moodToCook";
+            $fact = "haveHw";
             $prologQueryObj->setQuery('assert(' . $fact . ').');
             $result = $prologApiInstance->prologCommandUsingPOST($prologQueryObj);
             $factsList[] = $fact;
@@ -320,7 +320,7 @@ class LinkGorgiasWithPHP
         if ($userMod)
             $result = $prologApiInstance->unloadFileUsingPOST("Del_Panikos_Gorgias_Food.pl", "project2_group1");
         else
-            $result = $prologApiInstance->unloadFileUsingPOST("Cook_Cristian_Gorgias_food.pl", "project2_group1");
+            $result = $prologApiInstance->unloadFileUsingPOST("Cook_Cristian_Gorgias_Food.pl", "project2_group1");
 
         // We use the function generateResultArray to generate the explanation in natural language:
         return $this->generateResultArray($gorgiasResult);

@@ -266,11 +266,12 @@ require_once('Api.php');
             <?php
             $api = new Api();
             $result = $api->handleRequest();
+
             if ($result['delivery']) {
                 echo '<h3 class="bg-success text-white">Order Delivery</h3>';
                 echo '<div class="card">';
                 echo '<div class="card-body">';
-                echo '<h3>Explanation:</h6><h4>' . $result['deliveryDeltaExplanation'] . '</h4>';
+                echo '<h3>Explanation:</h3><h4>' . $result['deliveryDeltaExplanation'] . '</h4>';
                 echo '</div>';
                 echo '</div>';
             }
@@ -286,7 +287,7 @@ require_once('Api.php');
                 echo '<h3 class="bg-success text-white">Cook</h3>';
                 echo '<div class="card">';
                 echo '<div class="card-body">';
-                echo '<h3>Explanation:</h6><h4>' . $result['cookDeltaExplanation'] . '</h4>';
+                echo '<h3>Explanation:</h3><h4>' . $result['cookDeltaExplanation'] . '</h4>';
                 echo '</div>';
                 echo '</div>';
             }
